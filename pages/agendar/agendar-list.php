@@ -3,6 +3,7 @@ require __DIR__ . '../../../vendor/autoload.php';
 
 use App\Db\Pagination;
 use App\Entidy\Agendar;
+use App\Entidy\Horario;
 use App\Session\Login;
 
 define('TITLE','Agendamento');
@@ -28,6 +29,8 @@ $qtd = Agendar:: getQtd($where);
 $pagination = new Pagination($qtd, $_GET['pagina'] ?? 1, 5);
 
 $listar = Agendar::getList('*','agendar',$where, 'id desc',$pagination->getLimit());
+
+$horarios = Horario ::getList('*','horario');
 
 include __DIR__ . '../../../includes/layout/header.php';
 include __DIR__ . '../../../includes/layout/top.php';
