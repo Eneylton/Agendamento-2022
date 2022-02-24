@@ -5,7 +5,7 @@ $colunas = '';
 foreach ($horarios as $item) {
 
       $colunas .='<div class="col-2" style="text-align: center;">
-         <div class="icheck-info ">
+         <div class="icheck-orange ">
          <input type="checkbox" value="'.$item->id.'" name="id[]" id="['.$item->id.']">
          <label for="['.$item->id.']">'.$item->hora.'</label>
          </div>
@@ -27,7 +27,7 @@ foreach ($horarios as $item) {
                   <div class="row">
                      
                      
-                  <?= $colunas ?>
+                    <?= $colunas ?>
 
                   </div>
                   </div>
