@@ -3,18 +3,17 @@
       <div class="row">
          <div class="col-12">
             <div class="card card-purple" >
-               <form method="get">
+             <form action="./agendar-insert.php" method="get">
 
 <?php
 
-
 require_once("funcao.php");
-
 
 $resultado ='';
 $tabela ='';
 $colunas = '';
 $contador = 0;
+$data1 = 0;
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -40,11 +39,14 @@ switch ($mes){
     }
 
     $resultado .='<header>
+    <button type="submit" class="btn btn-primary">Atualizar
+    </button>
+    
 
     <a class="btn btn-success" href="?month='.anteriorMes($monthTime).'">ANTERIOR</a>
     
     <h1>'.$mes.'</h1>
-    
+   
     <a class="btn btn-success" href="?month='.proximoMes($monthTime).'">PROXIMO</a>
     
     </header>';
@@ -66,6 +68,8 @@ switch ($mes){
         <tbody>';
         for($row =0; $row < 6; $row++){
 
+         
+
          $tabela .='<tr style="text-align: center;">';
           
                     for($col = 0; $col < 7; $col++){
@@ -75,8 +79,12 @@ switch ($mes){
                         $tabela.='<td class="opacidade">';
                         
                     }else{
+
                      $tabela.='<td>';
+
                     }
+
+                  
 
                     $mesAno = date('Y-m',$startDate);
                     $dia = date('j',$startDate);
@@ -85,14 +93,23 @@ switch ($mes){
     
                     $tabela.='<h4>' .$dia.'</h4>';
 
+                    
                     foreach ($horarios as $item) {
 
-                     $contador += 1;
+                     $data1 = $data; 
 
-                     $tabela .=' <div class="icheck-red ">
-                     <input type="checkbox" value="' . $contador . '" name="id[]" id="[' . $contador. ']">
+                       $contador += 1;
+
+                     $tabela .='
+                     <div class="icheck-red ">
+                     
+                     <input type="checkbox" value="' . $item->hora . '" name="id[]" id="[' . $contador. ']">
                      <label for="[' . $contador . ']">'.date('H:i ', strtotime($item->hora)).'</label>
-                     </div>';
+                     </div>
+
+                     <input type="hidden" name="data" value="'.$data.'">
+                     
+                     ';
                   
                }
                     

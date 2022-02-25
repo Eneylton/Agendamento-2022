@@ -18,7 +18,7 @@ $usuario = $usuariologado['id'];
 Login::requireLogin();
 
 
-if(isset($_POST['nome'])){
+if(isset($_GET['id'])){
 
         $item = new Cargo;
         $item->nome = $_POST['nome'];
@@ -28,10 +28,6 @@ if(isset($_POST['nome'])){
         exit;
     }
   
-   
-
-
-
 
 include __DIR__.'../../../includes/layout/header.php';
 include __DIR__.'../../../includes/layout/top.php';
