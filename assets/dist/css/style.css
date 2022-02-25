@@ -7,3 +7,15 @@
 
     text-transform: uppercase !important;
 }
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+
+.opacidade{
+    opacity: .4 !important;
+    color: rgb(0, 163, 128) !important;
+}
