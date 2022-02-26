@@ -3,6 +3,7 @@
 $list = '';
 $checked = 0;
 $texto = 0;
+$linha = 0;
 
 if (isset($_GET['status'])) {
 
@@ -57,11 +58,14 @@ foreach ($listar as $item) {
       case '1':
          $checked = "checked";
          $texto = 'style="text-decoration:line-through;color:#ff0000;font-size:20px"';
+         $linha ="";
+         
          break;
       
       default:
           $checked = "";
           $texto ="";
+          $linha= 'class="badge badge-secondary"';
          break;
    }
 
@@ -75,7 +79,7 @@ foreach ($listar as $item) {
                       <input type="checkbox" value="' . $item->id . '" name="id[]" id="[' . $item->id . ']" '.$checked .'>
                       <label for="[' . $item->id . ']"></label>
                       </div></td>
-                      <td '.$texto.'> ' . $item->nome . '</td>
+                      <td '.$texto.'><h2><span '.$linha.'>' . $item->nome . '</span><h2/></td>
                       <td>' . $item->categoria . '</td>
                     
                       <td style="text-align: center;">
