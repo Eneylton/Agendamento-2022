@@ -5,8 +5,8 @@ require __DIR__.'../../../vendor/autoload.php';
 define('TITLE','Novo Usuário');
 define('BRAND','Cadastrar Usuário');
 
-use App\Entidy\Cargo;
-use   \App\Session\Login;
+use App\Entidy\Aluno;
+use App\Session\Login;
 
 $alertaLogin  = '';
 $alertaCadastro = '';
@@ -20,18 +20,15 @@ Login::requireLogin();
 
 if(isset($_POST['nome'])){
 
-        $item = new Cargo;
+        $item = new Aluno;
         $item->nome = $_POST['nome'];
+        $item->categoria_id = $_POST['categoria_id'];
+        $item->status = 0;
         $item->cadastar();
 
-        header('location: cargo-list.php?status=success');
+        header('location: aluno-list.php?status=success');
         exit;
     }
-  
-   
-
-
-
 
 include __DIR__.'../../../includes/layout/header.php';
 include __DIR__.'../../../includes/layout/top.php';

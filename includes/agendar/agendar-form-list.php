@@ -14,6 +14,7 @@ $tabela ='';
 $colunas = '';
 $contador = 0;
 $data1 = 0;
+$id = 0;
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -68,8 +69,6 @@ switch ($mes){
         <tbody>';
         for($row =0; $row < 6; $row++){
 
-         
-
          $tabela .='<tr style="text-align: center;">';
           
                     for($col = 0; $col < 7; $col++){
@@ -84,31 +83,28 @@ switch ($mes){
 
                     }
 
-                  
-
                     $mesAno = date('Y-m',$startDate);
+
                     $dia = date('j',$startDate);
                     
                     $data = ($mesAno.'-'.$dia);
     
                     $tabela.='<h4>' .$dia.'</h4>';
-
                     
                     foreach ($horarios as $item) {
 
-                     $data1 = $data; 
+                     $id = $item->id;
+
+                     $data1 = $id.' '.$data; 
 
                        $contador += 1;
 
                      $tabela .='
                      <div class="icheck-red ">
                      
-                     <input type="checkbox" value="' . $item->hora . '" name="id[]" id="[' . $contador. ']">
-                     <label for="[' . $contador . ']">'.date('H:i ', strtotime($item->hora)).'</label>
-                     </div>
-
-                     <input type="hidden" name="data" value="'.$data.'">
-                     
+                     <input type="checkbox" value="' . $data1 . '" name="id[]" id="[' . $contador. ']">
+                     <label for="[' . $contador . ']">'.date('Y-m-d H:i ', strtotime($item->hora)).'</label>
+                     </div>   
                      ';
                   
                }

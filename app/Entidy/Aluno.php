@@ -12,6 +12,7 @@ class Aluno
 
     public $id;
     public $nome;
+    public $status;
     public $categoria_id;
 
     public function cadastar()
@@ -23,6 +24,7 @@ class Aluno
         $this->id = $obdataBase->insert([
 
             'nome'              => $this->nome,
+            'status'            => $this->status,
             'categoria_id'      => $this->categoria_id
 
         ]);
@@ -35,6 +37,7 @@ class Aluno
         return (new Database('alunos'))->update('id = ' . $this->id, [
 
             'nome'              => $this->nome,
+            'status'            => $this->status,
             'categoria_id'      => $this->categoria_id
         ]);
     }

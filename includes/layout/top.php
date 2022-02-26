@@ -47,8 +47,8 @@ $usuario = $usuariologado ?
                     }
 
                     ?>" style="display: none;">
-          <a href="../../pages/agendar/agendar-list.php" class="nav-link">
-            <p>Agendar</p>
+          <a href="../../pages/alunos/aluno-list.php" class="nav-link">
+            <p>Alunos</p>
           </a>
         </li>
         

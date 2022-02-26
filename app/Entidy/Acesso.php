@@ -28,6 +28,15 @@ class Acesso{
 
     }
 
+    public function atualizar(){
+        return (new Database ('acessos'))->update('id = ' .$this-> id, [
+    
+            'nivel'              => $this->nivel
+        ]);
+      
+    }
+    
+
     public static function getList($fields = null, $table = null, $where = null, $order = null, $limit = null)
     {
 
@@ -52,13 +61,6 @@ class Acesso{
             ->fetchObject(self::class);
     }
 
-public function atualizar(){
-    return (new Database ('acessos'))->update('id = ' .$this-> id, [
-
-        'nivel'              => $this->nivel
-    ]);
-  
-}
 
 public function excluir(){
     return (new Database ('acessos'))->delete('id = ' .$this->id);

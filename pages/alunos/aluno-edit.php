@@ -6,11 +6,11 @@ require __DIR__.'../../../vendor/autoload.php';
 
 $alertaCadastro = '';
 
-define('TITLE','Editar Usuários');
-define('BRAND','Editar Usuários');
+define('TITLE','Editar Alunos');
+define('BRAND','Alunos');
 
-use \App\Entidy\Cargo;
-use   \App\Session\Login;
+use App\Entidy\Aluno;
+use App\Session\Login;
 
 
 Login::requireLogin();
@@ -24,10 +24,10 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     exit;
 }
 
-$value = Cargo:: getID('*','cargos',$_GET['id'],null,null);
+$value = Aluno:: getID('*','alunos',$_GET['id'],null,null);
 
 
-if(!$value instanceof Cargo){
+if(!$value instanceof Aluno){
     header('location: index.php?status=error');
 
     exit;
@@ -38,9 +38,10 @@ if(!$value instanceof Cargo){
 if(isset($_GET['nome'])){
     
     $value->nome = $_GET['nome'];
+    $value->categoria_id = $_GET['categoria_id'];
     $value-> atualizar();
 
-    header('location: cargo-list.php?status=edit');
+    header('location: aluno-list.php?status=edit');
 
     exit;
 }

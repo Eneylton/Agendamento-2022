@@ -2,11 +2,7 @@
 
 require __DIR__.'../../../vendor/autoload.php';
 
-define('TITLE','Novo Usuário');
-define('BRAND','Cadastrar Usuário');
-
-use App\Entidy\Cargo;
-use   \App\Session\Login;
+use App\Session\Login;
 
 $alertaLogin  = '';
 $alertaCadastro = '';
@@ -17,15 +13,22 @@ $usuario = $usuariologado['id'];
 
 Login::requireLogin();
 
+$id = 0;
+$data = 0;
 
 if(isset($_GET['id'])){
+       
 
-        $item = new Cargo;
-        $item->nome = $_POST['nome'];
-        $item->cadastar();
+    foreach ($_GET['id'] as $result) {
+        
+        $id = substr($result,0, 2);
+        intval($id);
+        $data = substr($result, 2, 15);
 
-        header('location: cargo-list.php?status=success');
-        exit;
+    }
+
+        // header('location: cargo-list.php?status=success');
+        // exit;
     }
   
 

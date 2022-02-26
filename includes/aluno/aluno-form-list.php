@@ -1,6 +1,8 @@
 <?php
 
 $list = '';
+$checked = 0;
+$texto = 0;
 
 if (isset($_GET['status'])) {
 
@@ -11,18 +13,18 @@ if (isset($_GET['status'])) {
          $text = 'Cadastro realizado com Sucesso !!!';
          break;
 
-         case 'del':
-            $icon  = 'error';
-            $title = 'Parabéns';
-            $text = 'Esse usuário foi excluido !!!';
-            break;
+      case 'del':
+         $icon  = 'error';
+         $title = 'Parabéns';
+         $text = 'Esse usuário foi excluido !!!';
+         break;
 
-            case 'edit':
-               $icon  = 'warning';
-               $title = 'Parabéns';
-               $text = 'Cadastro atualizado com sucesso !!!';
-               break;
-   
+      case 'edit':
+         $icon  = 'warning';
+         $title = 'Parabéns';
+         $text = 'Cadastro atualizado com sucesso !!!';
+         break;
+
 
       default:
          $icon  = 'error';
@@ -45,16 +47,36 @@ if (isset($_GET['status'])) {
    }
 
    alerta($icon, $title, $text);
-
 }
 
 $resultados = '';
 
 foreach ($listar as $item) {
 
+   switch ($item->status) {
+      case '1':
+         $checked = "checked";
+         $texto = 'style="text-decoration:line-through;color:#ff0000;font-size:20px"';
+         break;
+      
+      default:
+          $checked = "";
+          $texto ="";
+         break;
+   }
+
+   
+
    $resultados .= '<tr>
-                      <td>' . $item->id . '</td>
-                      <td>' . $item->nivel . '</td>
+                      <td style="display:none">' . $item->id . '</td>
+                      <td style="display:none">' . $item->nome . '</td>
+                      <td style="display:none">' . $item->categoria_id . '</td>
+                      <td><div class="icheck-indigo">
+                      <input type="checkbox" value="' . $item->id . '" name="id[]" id="[' . $item->id . ']" '.$checked .'>
+                      <label for="[' . $item->id . ']"></label>
+                      </div></td>
+                      <td '.$texto.'> ' . $item->nome . '</td>
+                      <td>' . $item->categoria . '</td>
                     
                       <td style="text-align: center;">
                         
@@ -62,7 +84,7 @@ foreach ($listar as $item) {
                       <button type="submit" class="btn btn-success editbtn" > <i class="fas fa-paint-brush"></i> </button>
                       &nbsp;
 
-                       <a href="acesso-delete.php?id=' . $item->id . '">
+                       <a href="aluno-delete.php?id=' . $item->id . '">
                        <button type="button" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
                        </a>
 
@@ -74,7 +96,7 @@ foreach ($listar as $item) {
 }
 
 $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                     <td colspan="6" class="text-center" > Nenhuma Vaga Encontrada !!!!! </td>
+                                                     <td colspan="4" class="text-center" > Nenhuma Vaga Encontrada !!!!! </td>
                                                      </tr>';
 
 
@@ -109,7 +131,7 @@ foreach ($paginas as $key => $pagina) {
                         <div class="col-4">
 
                            <label>Buscar por Nível</label>
-                           <input type="text" class="form-control" name="buscar" value="<?= $buscar ?>">
+                           <input type="text" class="form-control" name="buscar" value="<?= $buscar ?>" >
 
                         </div>
 
@@ -131,26 +153,36 @@ foreach ($paginas as $key => $pagina) {
                </div>
 
                <div class="table-responsive">
+                  <form id="form1" action="./instrutor_aluno.php" method="GET">
+                     <table class="table table-bordered table-dark table-bordered table-hover table-striped">
+                        <thead>
+                           <tr>
+                              <td colspan="4">
+                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-default"> <i class="fas fa-plus"></i> &nbsp; Nova</button>
+                                 <button type="submit" name="submit" class="btn btn-flat btn-warning float-right">Adicionar alunos &nbsp; <i class="fas fa-chevron-right"></i></button>
+                              </td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; width:20px">
+                                 <div class="icheck-warning d-inline">
+                                    <input type="checkbox" id="select-all">
+                                    <label for="select-all">
+                                    </label>
+                                 </div>
 
-                  <table class="table table-bordered table-dark table-bordered table-hover table-striped">
-                     <thead>
-                        <tr>
-                           <td colspan="4">
-                              <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-default"> <i class="fas fa-plus"></i> &nbsp; Nova</button>
-                           </td>
-                        </tr>
-                        <tr>
-                           <th style="text-align: left; width:80px"> CÓDIGO </th>
-                           <th> NÍVEL </th>
-                          
-                           <th style="text-align: center; width:200px"> AÇÃO </th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <?= $resultados ?>
-                     </tbody>
+                              </th>
+                              <th> ALUNO</th>
+                              <th> CATEGORIA</th>
 
-                  </table>
+                              <th style="text-align: center; width:200px"> AÇÃO </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?= $resultados ?>
+                        </tbody>
+
+                     </table>
+                  </form>
 
                </div>
 
@@ -171,10 +203,10 @@ foreach ($paginas as $key => $pagina) {
 <div class="modal fade" id="modal-default">
    <div class="modal-dialog">
       <div class="modal-content bg-light">
-         <form action="./acesso-insert.php" method="post">
+         <form action="./aluno-insert.php" method="post">
 
             <div class="modal-header">
-               <h4 class="modal-title">Novo acesso
+               <h4 class="modal-title">Novo aluno
                </h4>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -182,10 +214,23 @@ foreach ($paginas as $key => $pagina) {
             </div>
             <div class="modal-body">
                <div class="form-group">
-                  <label>Acesso</label>
-                  <input type="text" class="form-control" name="nivel" required>
+                  <label>Nome</label>
+                  <input type="text" class="form-control" name="nome" required>
                </div>
 
+               <div class="form-group">
+                  <label>Categoria</label>
+                  <select class="form-control select" style="width: 100%;" name="categoria_id" required>
+                     <option value=""> Selecione uma categoria </option>
+                     <?php
+
+                     foreach ($categorias as $item) {
+                        echo '<option value="' . $item->id . '">' . $item->nome . '</option>';
+                     }
+                     ?>
+
+                  </select>
+               </div>
             </div>
             <div class="modal-footer justify-content-between">
                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -204,7 +249,7 @@ foreach ($paginas as $key => $pagina) {
 
 <div class="modal fade" id="editmodal">
    <div class="modal-dialog">
-      <form action="./acesso-edit.php" method="get">
+      <form action="./aluno-edit.php" method="get">
          <div class="modal-content bg-light">
             <div class="modal-header">
                <h4 class="modal-title">Editar
@@ -216,10 +261,24 @@ foreach ($paginas as $key => $pagina) {
             <div class="modal-body">
                <input type="hidden" name="id" id="id">
                <div class="form-group">
-                  <label>Nível</label>
-                  <input type="text" class="form-control" name="nivel" id="nivel" required >
+                  <label>aluno</label>
+                  <input type="text" class="form-control" name="nome" id="nome" required>
                </div>
-       
+
+               <div class="form-group">
+                  <label>Categoria</label>
+                  <select class="form-control select" style="width: 100%;" name="categoria_id" id="categoria_id" required>
+
+                     <?php
+
+                     foreach ($categorias as $item) {
+                        echo '<option value="' . $item->id . '">' . $item->nome . '</option>';
+                     }
+                     ?>
+
+                  </select>
+               </div>
+
             </div>
             <div class="modal-footer justify-content-between">
                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
