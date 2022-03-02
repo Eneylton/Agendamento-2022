@@ -67,9 +67,14 @@ class Usuario
     }
 
 
-    public static function getUsuariosID($id)
+    public static function getID($fields, $table, $where, $order, $limit)
     {
-        return (new Database('usuarios'))->select('id = ' . $id)
+        return (new Database('usuarios'))->select($fields, $table, 'id = ' . $where, $order, $limit)
+            ->fetchObject(self::class);
+    }
+    public static function getEmail($fields, $table, $where, $order, $limit)
+    {
+        return (new Database('usuarios'))->select($fields, $table, "email = '" . $where."'", $order, $limit)
             ->fetchObject(self::class);
     }
 

@@ -321,7 +321,7 @@
     border: 0;
     border-radius: 0.25em;
     background: initial;
-    background-color: #6c757d;
+    background-color: #464646;
     color: #fff;
     font-size: 1.0625em; }
   .swal2-styled:focus {
@@ -576,7 +576,7 @@
     color: #17a2b8; }
   .swal2-icon.swal2-question {
     border-color: #a1a8ae;
-    color: #6c757d; }
+    color: #464646; }
   .swal2-icon.swal2-success {
     border-color: #28a745;
     color: #28a745; }
@@ -1168,7 +1168,7 @@ body.swal2-toast-column .swal2-toast {
       border-bottom: 0; }
     .swal2-popup.swal2-toast .swal2-title {
       margin: 0;
-      color: #6c757d; }
+      color: #464646; }
     .swal2-popup.swal2-toast .swal2-content {
       padding: 0 .5rem; }
     .swal2-popup.swal2-toast .swal2-actions {

@@ -14,7 +14,7 @@ define('BRAND','Usuários');
 Login::requireLogin();
 
 
-$buscar = filter_input(INPUT_GET, 'buscar', FILTER_SANITIZE_STRING);
+$buscar = filter_input(INPUT_GET, 'buscar', FILTER_UNSAFE_RAW);
 
 $condicoes = [
     strlen($buscar) ? 'nome LIKE "%'.str_replace(' ','%',$buscar).'%" or 
@@ -29,7 +29,12 @@ $qtd = Usuario:: getQtd($where);
 
 $pagination = new Pagination($qtd, $_GET['pagina'] ?? 1, 5);
 
-$listar = Usuario::getList('*','usuarios',$where, 'id desc',$pagination->getLimit());
+$listar = Usuario::getList('   u.id as id,
+u.nome as nome,
+u.email as email,
+c.nome as cargo','usuarios AS u
+INNER JOIN
+cargos AS c ON (c.id = u.cargos_id)',$where, 'id desc',$pagination->getLimit());
 
 $cargos = Cargo :: getList('*','cargos');
 

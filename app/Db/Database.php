@@ -9,7 +9,7 @@ class Database
 {
 
     const HOST = 'localhost';
-    const NAME = 'db_calendario';
+    const NAME = 'db_calendario2';
     const USER = 'root';
     const PASS = '';
 

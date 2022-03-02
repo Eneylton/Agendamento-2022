@@ -51,6 +51,54 @@ $usuario = $usuariologado ?
             <p>Alunos</p>
           </a>
         </li>
+
+        <li class="<?php
+
+                    switch ($acesso) {
+                      case '2':
+                        echo "nav-item d-none d-sm-inline-block";
+                        break;
+                      case '3':
+                        echo "";
+                        break;
+                      case '4':
+                        echo "";
+                        break;
+
+                      default:
+                        echo "nav-item d-none d-sm-inline-block";
+                        break;
+                    }
+
+                    ?>" style="display: none;">
+          <a href="../../pages/instrutores/instrutor-list.php" class="nav-link">
+            <p>Adicionar alunos</p>
+          </a>
+        </li>
+        
+        <li class="<?php
+
+                    switch ($acesso) {
+                      case '2':
+                        echo "nav-item d-none d-sm-inline-block";
+                        break;
+                      case '3':
+                        echo "";
+                        break;
+                      case '4':
+                        echo "";
+                        break;
+
+                      default:
+                        echo "nav-item d-none d-sm-inline-block";
+                        break;
+                    }
+
+                    ?>" style="display: none;">
+          <a href="../../pages/agendar/agendar-list.php" class="nav-link">
+            <p>Agendar</p>
+          </a>
+        </li>
         
 
       </ul>

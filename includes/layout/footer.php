@@ -95,6 +95,8 @@
 <script src="../../assets/dist/js/demo.js"></script>
 <script src="../../assets/dist/js/pages/dashboard.js"></script>
 <script src="../../assets/dist/js/jquery.mask.js"></script>
+<script src="../../assets/dist/js/modal.js"></script>
+<script src="../../assets/dist/js/check.js"></script>
 <script src="../../assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 <script src="../../assets/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
 <script src="../../assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>

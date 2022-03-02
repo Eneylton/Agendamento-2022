@@ -27,7 +27,7 @@
   border-radius: 0.25rem; }
 
 .select2-results__message {
-  color: #6c757d; }
+  color: #464646; }
 
 .select2-container--bootstrap4 .select2-selection--multiple {
   min-height: calc(1.5em + 0.75rem + 2px) !important; }
@@ -158,7 +158,7 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
 .select2-container--bootstrap4 .select2-results__group {
   padding: 6px;
   display: list-item;
-  color: #6c757d; }
+  color: #464646; }
 
 .select2-container--bootstrap4 .select2-selection__clear {
   width: 0.9em;

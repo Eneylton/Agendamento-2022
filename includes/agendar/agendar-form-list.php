@@ -1,139 +1,150 @@
+<?php
+
+$list = '';
+$checked = 0;
+$texto = 0;
+$linha = 0;
+
+$resultados = '';
+
+foreach ($listar as $item) {
+
+   switch ($item->status) {
+      case '1':
+         $checked = "checked";
+         $texto = 'style="text-decoration:line-through;color:#ff0000;font-size:20px"';
+         $linha ="";
+         
+         break;
+      
+      default:
+          $checked = "";
+          $texto ="";
+          $linha= 'class="badge badge-secondary"';
+         break;
+   }
+
+   
+
+   $resultados .= '<tr>
+                      <td style="display:none">' . $item->id . '</td>
+                      <td style="display:none">' . $item->nome . '</td>
+                      <td style="display:none">' . $item->categoria_id . '</td>
+                      <td><div class="icheck-indigo">
+                      <input type="checkbox" value="' . $item->id . '" name="id[]" id="[' . $item->id . ']" '.$checked .'>
+                      <label for="[' . $item->id . ']"></label>
+                      </div></td>
+                      <td '.$texto.'><h2><span '.$linha.'>' . $item->aluno . '</span><h2/></td>
+                      <td><h2><span class="badge badge-warning">' . $item->categoria . '</span></h2></td>
+                    
+                      <td style="text-align: center;">
+                        
+                      
+                     
+
+                       <a href="calendario-list.php?id=' . $item->id_aluno . '">
+                       <button type="button" class="btn btn-danger"> <i class="fas fa-calendar"></i>&nbsp;&nbsp; AGENDAR</button>
+                       </a>
+
+
+                      </td>
+                      </tr>
+
+                      ';
+}
+
+$resultados = strlen($resultados) ? $resultados : '<tr>
+                                                     <td colspan="4" class="text-center" > Nenhuma Vaga Encontrada !!!!! </td>
+                                                     </tr>';
+
+
+unset($_GET['status']);
+unset($_GET['pagina']);
+$gets = http_build_query($_GET);
+
+//PAGINAÇÂO
+
+$paginacao = '';
+$paginas = $pagination->getPages();
+
+foreach ($paginas as $key => $pagina) {
+   $class = $pagina['atual'] ? 'btn-primary' : 'btn-secondary';
+   $paginacao .= '<a href="?pagina=' . $pagina['pagina'] . '&' . $gets . '">
+
+                  <button type="button" class="btn ' . $class . '">' . $pagina['pagina'] . '</button>
+                  </a>';
+}
+
+?>
+
 <section class="content">
    <div class="container-fluid">
       <div class="row">
          <div class="col-12">
-            <div class="card card-purple" >
-             <form action="./agendar-insert.php" method="get">
+            <div class="card card-purple">
+               <div class="card-header">
 
-<?php
+                  <form method="get">
+                     <div class="row ">
+                        <div class="col-4">
 
-require_once("funcao.php");
+                           <label>Buscar por Nível</label>
+                           <input type="text" class="form-control" name="buscar" value="<?= $buscar ?>" >
 
-$resultado ='';
-$tabela ='';
-$colunas = '';
-$contador = 0;
-$data1 = 0;
-$id = 0;
+                        </div>
 
-date_default_timezone_set('America/Sao_Paulo');
 
-$monthTime = getMes();
+                        <div class="col d-flex align-items-end">
+                           <button type="submit" class="btn btn-warning" name="">
+                              <i class="fas fa-search"></i>
 
-$mes = date('m ',$monthTime  );
+                              Pesquisar
 
-switch ($mes){
- 
-    case 1: $mes = "JANEIRO"; break;
-    case 2: $mes = "FEVEREIRO"; break;
-    case 3: $mes = "MARÇO"; break;
-    case 4: $mes = "ABRIL"; break;
-    case 5: $mes = "MAIO"; break;
-    case 6: $mes = "JUNHO"; break;
-    case 7: $mes = "JULHO"; break;
-    case 8: $mes = "AGOSTO"; break;
-    case 9: $mes = "SETEMBRO"; break;
-    case 10: $mes = "OUTUBRO"; break;
-    case 11: $mes = "NOVEMBRO"; break;
-    case 12: $mes = "DEZEMBRO"; break;
-     
-    }
+                           </button>
 
-    $resultado .='<header>
-    <button type="submit" class="btn btn-primary">Atualizar
-    </button>
-    
+                        </div>
 
-    <a class="btn btn-success" href="?month='.anteriorMes($monthTime).'">ANTERIOR</a>
-    
-    <h1>'.$mes.'</h1>
-   
-    <a class="btn btn-success" href="?month='.proximoMes($monthTime).'">PROXIMO</a>
-    
-    </header>';
 
-    $startDate = strtotime('last sunday',$monthTime);
+                     </div>
 
-    $tabela .='<table class="table">
-    <thead>
-            <tr style="text-align: center;">
-            <th>DOM</th>
-            <th>SEG</th>
-            <th>TER</th>
-            <th>QUA</th>
-            <th>QUI</th>
-            <th>SEX</th>
-            <th>SAB</th>
-            </tr>
-            </thead>
-        <tbody>';
-        for($row =0; $row < 6; $row++){
+                  </form>
+               </div>
 
-         $tabela .='<tr style="text-align: center;">';
-          
-                    for($col = 0; $col < 7; $col++){
-
-                     if(date('Y-m',$startDate) !== date('Y-m',$monthTime)){
-
-                        $tabela.='<td class="opacidade">';
-                        
-                    }else{
-
-                     $tabela.='<td>';
-
-                    }
-
-                    $mesAno = date('Y-m',$startDate);
-
-                    $dia = date('j',$startDate);
-                    
-                    $data = ($mesAno.'-'.$dia);
-    
-                    $tabela.='<h4>' .$dia.'</h4>';
-                    
-                    foreach ($horarios as $item) {
-
-                     $id = $item->id;
-
-                     $data1 = $id.' '.$data; 
-
-                       $contador += 1;
-
-                     $tabela .='
-                     <div class="icheck-red ">
-                     
-                     <input type="checkbox" value="' . $data1 . '" name="id[]" id="[' . $contador. ']">
-                     <label for="[' . $contador . ']">'.date('Y-m-d H:i ', strtotime($item->hora)).'</label>
-                     </div>   
-                     ';
+               <div class="table-responsive">
                   
-               }
-                    
-                    $tabela.='</td>';
-    
-                    $startDate = strtotime("+1 day", $startDate);
-                    }
+                     <table class="table table-bordered table-dark table-bordered table-hover table-striped">
+                        <thead>
+                           <tr>
+                              <td colspan="4">
+                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-default"> <i class="fas fa-plus"></i> &nbsp; Nova</button>
+                                 
+                              </td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; width:20px">
+                                 <div class="icheck-warning d-inline">
+                                    <input type="checkbox" id="select-all">
+                                    <label for="select-all">
+                                    </label>
+                                 </div>
 
-         $tabela .='</tr>';
+                              </th>
+                              <th> ALUNO</th>
+                              <th> CATEGORIA</th>
 
-         }
-         
-       $tabela .= '</tbody>
-      </table>
-    ';
+                              <th style="text-align: center; width:200px"> AÇÃO </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?= $resultados ?>
+                        </tbody>
 
+                     </table>
+            
 
-
-
-?>
-
-
-
-<?= $resultado ?>
-<?= $tabela ?>
+               </div>
 
 
-               </form>
             </div>
 
          </div>
@@ -143,3 +154,98 @@ switch ($mes){
    </div>
 
 </section>
+
+<?= $paginacao ?>
+
+
+<div class="modal fade" id="modal-default">
+   <div class="modal-dialog">
+      <div class="modal-content bg-light">
+         <form action="./aluno-insert.php" method="post">
+
+            <div class="modal-header">
+               <h4 class="modal-title">Novo aluno
+               </h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  <label>Nome</label>
+                  <input type="text" class="form-control" name="nome" required>
+               </div>
+
+               <div class="form-group">
+                  <label>Categoria</label>
+                  <select class="form-control select" style="width: 100%;" name="categoria_id" required>
+                     <option value=""> Selecione uma categoria </option>
+                     <?php
+
+                     foreach ($categorias as $item) {
+                        echo '<option value="' . $item->id . '">' . $item->nome . '</option>';
+                     }
+                     ?>
+
+                  </select>
+               </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+               <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+
+         </form>
+
+      </div>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+
+<!-- EDITAR -->
+
+<div class="modal fade" id="editmodal">
+   <div class="modal-dialog">
+      <form action="./aluno-edit.php" method="get">
+         <div class="modal-content bg-light">
+            <div class="modal-header">
+               <h4 class="modal-title">Editar
+               </h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <input type="hidden" name="id" id="id">
+               <div class="form-group">
+                  <label>aluno</label>
+                  <input type="text" class="form-control" name="nome" id="nome" required>
+               </div>
+
+               <div class="form-group">
+                  <label>Categoria</label>
+                  <select class="form-control select" style="width: 100%;" name="categoria_id" id="categoria_id" required>
+
+                     <?php
+
+                     foreach ($categorias as $item) {
+                        echo '<option value="' . $item->id . '">' . $item->nome . '</option>';
+                     }
+                     ?>
+
+                  </select>
+               </div>
+
+            </div>
+            <div class="modal-footer justify-content-between">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+               <button type="submit" class="btn btn-primary">Salvar
+               </button>
+            </div>
+         </div>
+      </form>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>

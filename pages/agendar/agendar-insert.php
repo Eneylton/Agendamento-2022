@@ -2,6 +2,7 @@
 
 require __DIR__.'../../../vendor/autoload.php';
 
+use App\Entidy\Marcacao;
 use App\Session\Login;
 
 $alertaLogin  = '';
@@ -13,28 +14,32 @@ $usuario = $usuariologado['id'];
 
 Login::requireLogin();
 
-$id = 0;
+$id_aluno = 0;
 $data = 0;
+$id_hora = 0;
 
 if(isset($_GET['id'])){
        
-
     foreach ($_GET['id'] as $result) {
-        
-        $id = substr($result,0, 2);
-        intval($id);
-        $data = substr($result, 2, 15);
 
+        $id_hora = substr($result,0, 2);
+        $data = substr($result, 2, 10);
+        $id_aluno = substr($result, 12, 15);
+
+        //$alunoMarcado =  Marcacao:: getAlunoMarcado('*','marcacao',$id_aluno,null,null);
+
+            $item = new Marcacao;
+            $item->data       = $data;
+            $item->status     = 1;
+            $item->alunos_id  = $id_aluno;
+            $item->horario_id = $id_hora;
+            $item->cadastar();
+        
+           header('location: calendario-list.php?id='.$id_aluno.'&status=success');
+           exit;
     }
 
-        // header('location: cargo-list.php?status=success');
-        // exit;
+   
     }
   
 
-include __DIR__.'../../../includes/layout/header.php';
-include __DIR__.'../../../includes/layout/top.php';
-include __DIR__.'../../../includes/layout/menu.php';
-include __DIR__.'../../../includes/layout/content.php';
-include __DIR__.'../../../includes/usuario/usuario-form-insert.php';
-include __DIR__.'../../../includes/layout/footer.php';

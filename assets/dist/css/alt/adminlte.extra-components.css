@@ -459,18 +459,18 @@
 }
 
 .dark-mode .timeline::before {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .dark-mode .timeline > div > .timeline-item {
   background-color: #343a40;
   color: #fff;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .timeline > div > .timeline-item > .timeline-header {
   color: #ced4da;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .timeline > div > .timeline-item > .time {
@@ -513,7 +513,7 @@
 }
 
 .products-list .product-description {
-  color: #6c757d;
+  color: #464646;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -532,7 +532,7 @@
 .dark-mode .products-list > .item {
   background-color: #343a40;
   color: #fff;
-  border-bottom-color: #6c757d;
+  border-bottom-color: #464646;
 }
 
 .dark-mode .product-description {
@@ -678,7 +678,7 @@
 }
 
 .direct-chat-contacts-light .contacts-list-date {
-  color: #6c757d;
+  color: #464646;
 }
 
 .direct-chat-contacts-light .contacts-list-msg {
@@ -750,13 +750,13 @@
 }
 
 .direct-chat-secondary .right > .direct-chat-text {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #464646;
+  border-color: #464646;
   color: #fff;
 }
 
 .direct-chat-secondary .right > .direct-chat-text::after, .direct-chat-secondary .right > .direct-chat-text::before {
-  border-left-color: #6c757d;
+  border-left-color: #464646;
 }
 
 .direct-chat-success .right > .direct-chat-text {
@@ -990,13 +990,13 @@
 }
 
 .direct-chat-gray .right > .direct-chat-text {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #464646;
+  border-color: #464646;
   color: #fff;
 }
 
 .direct-chat-gray .right > .direct-chat-text::after, .direct-chat-gray .right > .direct-chat-text::before {
-  border-left-color: #6c757d;
+  border-left-color: #464646;
 }
 
 .direct-chat-gray-dark .right > .direct-chat-text {

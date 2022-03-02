@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Fev-2022 às 03:38
+-- Tempo de geração: 02-Mar-2022 às 01:52
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.14
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_calendario`
+-- Banco de dados: `db_calendario2`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +42,8 @@ INSERT INTO `acessos` (`id`, `nivel`) VALUES
 (3, 'Coordenador'),
 (4, 'Auxiliar'),
 (5, 'Caixa'),
-(6, 'Mecânico');
+(6, 'Mecânico'),
+(7, 'Instrutor');
 
 -- --------------------------------------------------------
 
@@ -85,9 +86,12 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id`, `nome`, `status`, `categoria_id`) VALUES
-(1, 'Isabelly Barros', 0, 1),
-(2, 'Jamilla Barros ', 1, 2),
-(3, 'Livia Jansen', 1, 3);
+(1, 'Eneylton Barros', 0, 1),
+(2, 'Carla Barros ', 0, 2),
+(3, 'Almir Jansen', 1, 3),
+(4, 'Elias Barros', 0, 3),
+(5, 'Kassia Andrade', 1, 1),
+(6, 'Jose de Arimateia', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -114,7 +118,8 @@ INSERT INTO `cargos` (`id`, `nome`) VALUES
 (7, 'Auxiliar de Logística'),
 (8, 'Diretora'),
 (9, 'Assistente Financeiro'),
-(10, 'Coordenadora de RH');
+(10, 'Coordenadora de RH'),
+(12, 'Instrutor');
 
 -- --------------------------------------------------------
 
@@ -140,7 +145,8 @@ INSERT INTO `categoria` (`id`, `nome`) VALUES
 (6, 'A/E'),
 (7, 'A/B'),
 (8, 'A/C'),
-(9, 'A/D');
+(9, 'A/D'),
+(10, 'Nenhum');
 
 -- --------------------------------------------------------
 
@@ -173,6 +179,77 @@ INSERT INTO `horario` (`id`, `hora`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `instrutor`
+--
+
+CREATE TABLE `instrutor` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `senha` varchar(225) DEFAULT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `veiculo_id` int(11) NOT NULL,
+  `acessos_id` int(11) NOT NULL,
+  `cargos_id` int(11) NOT NULL,
+  `usuarios_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `instrutor`
+--
+
+INSERT INTO `instrutor` (`id`, `nome`, `email`, `senha`, `categoria_id`, `veiculo_id`, `acessos_id`, `cargos_id`, `usuarios_id`) VALUES
+(9, 'karina Barros', 'karina@gmail.com', '$2y$10$WjzX.KYavRDBjRK8lYSjCOQOQ7toSDqb2i48y2fp8u0QZnbJSzgt2', 6, 1, 7, 12, 18),
+(10, 'Maria', 'maria@gmail.com', '$2y$10$4a2kQQMaZH1.17ETmiiU4.rWFa0Wy.BODFEotAyXYygj/XQenBRL2', 8, 3, 7, 12, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `instrutor_alunos`
+--
+
+CREATE TABLE `instrutor_alunos` (
+  `id` int(11) NOT NULL,
+  `instrutor_id` int(11) NOT NULL,
+  `alunos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `instrutor_alunos`
+--
+
+INSERT INTO `instrutor_alunos` (`id`, `instrutor_id`, `alunos_id`) VALUES
+(25, 10, 3),
+(26, 10, 5),
+(27, 10, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `marcacao`
+--
+
+CREATE TABLE `marcacao` (
+  `id` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `alunos_id` int(11) NOT NULL,
+  `horario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `marcacao`
+--
+
+INSERT INTO `marcacao` (`id`, `data`, `status`, `alunos_id`, `horario_id`) VALUES
+(21, '2022-02-27', 1, 3, 1),
+(23, '2022-02-28', 1, 3, 2),
+(25, '2022-03-01', 1, 3, 3),
+(26, '2022-03-02', 1, 3, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
@@ -192,26 +269,32 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `acessos_id`, `cargos_id`) VALUES
 (4, 'admin', 'admin@eneylton.com', '$2y$10$JZR7X2ZpplGhF4dtchAhJedF/Y0/4ynAOd8VBlR4ehJfLOKHX4mLG', 1, 1),
 (7, 'ene', 'eneylton@hotmail.com', '$2y$10$JZR7X2ZpplGhF4dtchAhJedF/Y0/4ynAOd8VBlR4ehJfLOKHX4mLG', 2, 1),
-(13, 'enexs', 'enex@gmail.com.br', '202cb962ac59075b964b07152d234b70', 3, 1);
+(13, 'enexs', 'enex@gmail.com.br', '202cb962ac59075b964b07152d234b70', 3, 1),
+(18, 'karina Barros', 'karina@gmail.com', '$2y$10$B36yl.Q3oYO5TAualTzTC.1F6mcYk4mhzoBx2OBJ4eE3/sFz3zEpC', 7, 12),
+(19, 'Carol', 'carol@gmail.com', '$2y$10$gOrQfE0cvkmVN1QUXUUElOqfsNsZLRDLT3r6ipfdgRHZfVdCu5Wu6', 7, 12);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios_has_alunos`
+-- Estrutura da tabela `veiculo`
 --
 
-CREATE TABLE `usuarios_has_alunos` (
-  `usuarios_id` int(11) NOT NULL,
-  `alunos_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `veiculo` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `usuarios_has_alunos`
+-- Extraindo dados da tabela `veiculo`
 --
 
-INSERT INTO `usuarios_has_alunos` (`usuarios_id`, `alunos_id`) VALUES
-(4, 2),
-(4, 3);
+INSERT INTO `veiculo` (`id`, `nome`) VALUES
+(1, 'CARRO'),
+(2, 'ÔNIBUS'),
+(3, 'MOTO'),
+(4, 'CAMINHÃO'),
+(5, 'ESCANHA'),
+(6, 'NENHUM');
 
 --
 -- Índices para tabelas despejadas
@@ -258,6 +341,33 @@ ALTER TABLE `horario`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_instrutor_categoria1_idx` (`categoria_id`),
+  ADD KEY `fk_instrutor_veiculo1_idx` (`veiculo_id`),
+  ADD KEY `fk_instrutor_acessos1_idx` (`acessos_id`),
+  ADD KEY `fk_instrutor_cargos1_idx` (`cargos_id`),
+  ADD KEY `fk_instrutor_usuarios1_idx` (`usuarios_id`);
+
+--
+-- Índices para tabela `instrutor_alunos`
+--
+ALTER TABLE `instrutor_alunos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_instrutor_alunos_instrutor1_idx` (`instrutor_id`),
+  ADD KEY `fk_instrutor_alunos_alunos1_idx` (`alunos_id`);
+
+--
+-- Índices para tabela `marcacao`
+--
+ALTER TABLE `marcacao`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_marcacao_alunos1_idx` (`alunos_id`),
+  ADD KEY `fk_marcacao_horario1_idx` (`horario_id`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -266,12 +376,10 @@ ALTER TABLE `usuarios`
   ADD KEY `fk_usuarios_cargos1_idx` (`cargos_id`);
 
 --
--- Índices para tabela `usuarios_has_alunos`
+-- Índices para tabela `veiculo`
 --
-ALTER TABLE `usuarios_has_alunos`
-  ADD PRIMARY KEY (`usuarios_id`,`alunos_id`),
-  ADD KEY `fk_usuarios_has_alunos_alunos1_idx` (`alunos_id`),
-  ADD KEY `fk_usuarios_has_alunos_usuarios1_idx` (`usuarios_id`);
+ALTER TABLE `veiculo`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -281,7 +389,7 @@ ALTER TABLE `usuarios_has_alunos`
 -- AUTO_INCREMENT de tabela `acessos`
 --
 ALTER TABLE `acessos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `agendar`
@@ -293,19 +401,19 @@ ALTER TABLE `agendar`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `cargos`
 --
 ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `horario`
@@ -314,10 +422,34 @@ ALTER TABLE `horario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT de tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `instrutor_alunos`
+--
+ALTER TABLE `instrutor_alunos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT de tabela `marcacao`
+--
+ALTER TABLE `marcacao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de tabela `veiculo`
+--
+ALTER TABLE `veiculo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas
@@ -338,18 +470,35 @@ ALTER TABLE `alunos`
   ADD CONSTRAINT `fk_alunos_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Limitadores para a tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  ADD CONSTRAINT `fk_instrutor_acessos1` FOREIGN KEY (`acessos_id`) REFERENCES `acessos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instrutor_cargos1` FOREIGN KEY (`cargos_id`) REFERENCES `cargos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instrutor_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instrutor_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instrutor_veiculo1` FOREIGN KEY (`veiculo_id`) REFERENCES `veiculo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `instrutor_alunos`
+--
+ALTER TABLE `instrutor_alunos`
+  ADD CONSTRAINT `fk_instrutor_alunos_alunos1` FOREIGN KEY (`alunos_id`) REFERENCES `alunos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instrutor_alunos_instrutor1` FOREIGN KEY (`instrutor_id`) REFERENCES `instrutor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `marcacao`
+--
+ALTER TABLE `marcacao`
+  ADD CONSTRAINT `fk_marcacao_alunos1` FOREIGN KEY (`alunos_id`) REFERENCES `alunos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_marcacao_horario1` FOREIGN KEY (`horario_id`) REFERENCES `horario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Limitadores para a tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_usuarios_acessos1` FOREIGN KEY (`acessos_id`) REFERENCES `acessos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuarios_cargos1` FOREIGN KEY (`cargos_id`) REFERENCES `cargos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `usuarios_has_alunos`
---
-ALTER TABLE `usuarios_has_alunos`
-  ADD CONSTRAINT `fk_usuarios_has_alunos_alunos1` FOREIGN KEY (`alunos_id`) REFERENCES `alunos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuarios_has_alunos_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

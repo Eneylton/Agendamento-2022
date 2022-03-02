@@ -228,7 +228,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-switch.custom-switch-off-secondary .custom-control-input ~ .custom-control-label::before {
-  background-color: #6c757d;
+  background-color: #464646;
   border-color: #3d4246;
 }
 
@@ -241,7 +241,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-switch.custom-switch-on-secondary .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #6c757d;
+  background-color: #464646;
   border-color: #3d4246;
 }
 
@@ -852,7 +852,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-switch.custom-switch-off-gray .custom-control-input ~ .custom-control-label::before {
-  background-color: #6c757d;
+  background-color: #464646;
   border-color: #3d4246;
 }
 
@@ -865,7 +865,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-switch.custom-switch-on-gray .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #6c757d;
+  background-color: #464646;
   border-color: #3d4246;
 }
 
@@ -960,7 +960,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-secondary::-webkit-slider-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-secondary::-webkit-slider-thumb:active {
@@ -968,7 +968,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-secondary::-moz-range-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-secondary::-moz-range-thumb:active {
@@ -976,7 +976,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-secondary::-ms-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-secondary::-ms-thumb:active {
@@ -1920,7 +1920,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-gray::-webkit-slider-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-gray::-webkit-slider-thumb:active {
@@ -1928,7 +1928,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-gray::-moz-range-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-gray::-moz-range-thumb:active {
@@ -1936,7 +1936,7 @@ body.text-sm .input-group-text {
 }
 
 .custom-range.custom-range-gray::-ms-thumb {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .custom-range.custom-range-gray::-ms-thumb:active {
@@ -2010,8 +2010,8 @@ body.text-sm .input-group-text {
 }
 
 .custom-control-input-secondary:checked ~ .custom-control-label::before {
-  border-color: #6c757d;
-  background-color: #6c757d;
+  border-color: #464646;
+  background-color: #464646;
 }
 
 .custom-control-input-secondary.custom-control-input-outline:checked[type="checkbox"] ~ .custom-control-label::after {
@@ -2634,8 +2634,8 @@ body.text-sm .input-group-text {
 }
 
 .custom-control-input-gray:checked ~ .custom-control-label::before {
-  border-color: #6c757d;
-  background-color: #6c757d;
+  border-color: #464646;
+  background-color: #464646;
 }
 
 .custom-control-input-gray.custom-control-input-outline:checked[type="checkbox"] ~ .custom-control-label::after {
@@ -2705,23 +2705,23 @@ body.text-sm .input-group-text {
 }
 
 .dark-mode .form-control:not(.form-control-navbar):not(.is-invalid):not(:focus) {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode select {
   background-color: #343a40;
   color: #fff;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .input-group-text {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .custom-control-input:disabled ~ .custom-control-label::before,
 .dark-mode .custom-control-input[disabled] ~ .custom-control-label::before {
   background-color: #3f474e;
-  border-color: #6c757d;
+  border-color: #464646;
   color: #fff;
 }
 
@@ -2740,7 +2740,7 @@ body.text-sm .input-group-text {
 .dark-mode .navbar-dark .btn-navbar,
 .dark-mode .navbar-dark .form-control-navbar {
   background-color: #343a40;
-  border: 1px solid #6c757d;
+  border: 1px solid #464646;
 }
 
 .dark-mode .navbar-dark .btn-navbar:hover {
@@ -2755,7 +2755,7 @@ body.text-sm .input-group-text {
 .dark-mode .navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
   background-color: #3f474e;
   color: #fff;
-  border: 1px solid #6c757d;
+  border: 1px solid #464646;
   border-left: none;
 }
 
@@ -2886,7 +2886,7 @@ body.text-sm .input-group-text {
 }
 
 .card-secondary:not(.card-outline) > .card-header {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .card-secondary:not(.card-outline) > .card-header,
@@ -2899,7 +2899,7 @@ body.text-sm .input-group-text {
 }
 
 .card-secondary.card-outline {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #464646;
 }
 
 .card-secondary.card-outline-tabs > .card-header a:hover {
@@ -2907,7 +2907,7 @@ body.text-sm .input-group-text {
 }
 
 .card-secondary.card-outline-tabs > .card-header a.active {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #464646;
 }
 
 .bg-secondary .btn-tool,
@@ -4590,7 +4590,7 @@ body.text-sm .input-group-text {
 }
 
 .card-gray:not(.card-outline) > .card-header {
-  background-color: #6c757d;
+  background-color: #464646;
 }
 
 .card-gray:not(.card-outline) > .card-header,
@@ -4603,7 +4603,7 @@ body.text-sm .input-group-text {
 }
 
 .card-gray.card-outline {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #464646;
 }
 
 .card-gray.card-outline-tabs > .card-header a:hover {
@@ -4611,7 +4611,7 @@ body.text-sm .input-group-text {
 }
 
 .card-gray.card-outline-tabs > .card-header a.active {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #464646;
 }
 
 .bg-gray .btn-tool,
@@ -5108,7 +5108,7 @@ html.maximized-card {
 }
 
 .todo-list .secondary {
-  border-left-color: #6c757d;
+  border-left-color: #464646;
 }
 
 .todo-list .success {
@@ -5204,7 +5204,7 @@ html.maximized-card {
 }
 
 .todo-list .gray {
-  border-left-color: #6c757d;
+  border-left-color: #464646;
 }
 
 .todo-list .gray-dark {
@@ -5236,7 +5236,7 @@ html.maximized-card {
 }
 
 .dark-mode .card .nav.flex-column > li {
-  border-bottom-color: #6c757d;
+  border-bottom-color: #464646;
 }
 
 .dark-mode .card .card-footer {
@@ -5244,7 +5244,7 @@ html.maximized-card {
 }
 
 .dark-mode .card.card-outline-tabs .card-header a:hover {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .card:not(.card-outline) > .card-header a.active {
@@ -5293,7 +5293,7 @@ html.maximized-card {
 
 .dark-mode .modal-header,
 .dark-mode .modal-footer {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .modal-content {
@@ -5302,7 +5302,7 @@ html.maximized-card {
 
 .dark-mode .modal-content.bg-warning .modal-header,
 .dark-mode .modal-content.bg-warning .modal-footer {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .modal-content.bg-warning .close {
@@ -5770,7 +5770,7 @@ html.maximized-card {
   border-radius: 3px;
   background-color: #f8f9fa;
   border: 1px solid #ddd;
-  color: #6c757d;
+  color: #464646;
   font-size: 12px;
   height: 60px;
   margin: 0 0 10px 10px;
@@ -5825,7 +5825,7 @@ html.maximized-card {
 .dark-mode .btn-app {
   background-color: #3a4047;
   color: #fff;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .btn-default:hover, .dark-mode .btn-default:focus,
@@ -5839,7 +5839,7 @@ html.maximized-card {
 .dark-mode .btn-light {
   background-color: #454d55;
   color: #fff;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .btn-light:hover, .dark-mode .btn-light:focus {
@@ -5930,7 +5930,7 @@ html.maximized-card {
 
 .alert-secondary {
   color: #fff;
-  background-color: #6c757d;
+  background-color: #464646;
   border-color: #60686f;
 }
 
@@ -6167,22 +6167,22 @@ html.maximized-card {
 .dark-mode .table-bordered,
 .dark-mode .table-bordered td,
 .dark-mode .table-bordered th {
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .table-hover tbody tr:hover {
   color: #dee2e6;
   background-color: #3a4047;
-  border-color: #6c757d;
+  border-color: #464646;
 }
 
 .dark-mode .table thead th {
-  border-bottom-color: #6c757d;
+  border-bottom-color: #464646;
 }
 
 .dark-mode .table th,
 .dark-mode .table td {
-  border-top-color: #6c757d;
+  border-top-color: #464646;
 }
 
 .dark-mode .table.table-head-fixed thead tr:nth-child(1) th {

@@ -8,9 +8,6 @@ define('BRAND','Cadastrar Usuário');
 use App\Entidy\Cargo;
 use   \App\Session\Login;
 
-$alertaLogin  = '';
-$alertaCadastro = '';
-
 $usuariologado = Login:: getUsuarioLogado();
 
 $usuario = $usuariologado['id'];

@@ -5,51 +5,6 @@ $checked = 0;
 $texto = 0;
 $linha = 0;
 
-if (isset($_GET['status'])) {
-
-   switch ($_GET['status']) {
-      case 'success':
-         $icon  = 'success';
-         $title = 'Parabéns';
-         $text = 'Cadastro realizado com Sucesso !!!';
-         break;
-
-      case 'del':
-         $icon  = 'error';
-         $title = 'Parabéns';
-         $text = 'Esse usuário foi excluido !!!';
-         break;
-
-      case 'edit':
-         $icon  = 'warning';
-         $title = 'Parabéns';
-         $text = 'Cadastro atualizado com sucesso !!!';
-         break;
-
-
-      default:
-         $icon  = 'error';
-         $title = 'Opss !!!';
-         $text = 'Algo deu errado entre em contato com admin !!!';
-         break;
-   }
-
-   function alerta($icon, $title, $text)
-   {
-      echo "<script type='text/javascript'>
-      Swal.fire({
-        type:'type',  
-        icon: '$icon',
-        title: '$title',
-        text: '$text'
-       
-      }) 
-      </script>";
-   }
-
-   alerta($icon, $title, $text);
-}
-
 $resultados = '';
 
 foreach ($listar as $item) {
@@ -157,13 +112,13 @@ foreach ($paginas as $key => $pagina) {
                </div>
 
                <div class="table-responsive">
-                  <form id="form1" action="./instrutor_aluno.php" method="GET">
+                  
                      <table class="table table-bordered table-dark table-bordered table-hover table-striped">
                         <thead>
                            <tr>
                               <td colspan="4">
                                  <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-default"> <i class="fas fa-plus"></i> &nbsp; Nova</button>
-                                 <button type="submit" name="submit" class="btn btn-flat btn-warning float-right">Adicionar alunos &nbsp; <i class="fas fa-chevron-right"></i></button>
+                                 
                               </td>
                            </tr>
                            <tr>
@@ -186,7 +141,7 @@ foreach ($paginas as $key => $pagina) {
                         </tbody>
 
                      </table>
-                  </form>
+            
 
                </div>
 

@@ -55,6 +55,7 @@ foreach ($listar as $item) {
                       <td>' . $item->id . '</td>
                       <td>' . $item->nome . '</td>
                       <td>' . $item->email . '</td>
+                      <td>' . $item->cargo . '</td>
                       <td style="text-align: center;">
                         
                       
@@ -73,7 +74,7 @@ foreach ($listar as $item) {
 }
 
 $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                     <td colspan="6" class="text-center" > Nenhuma Vaga Encontrada !!!!! </td>
+                                                     <td colspan="5" class="text-center" > Nenhuma Vaga Encontrada !!!!! </td>
                                                      </tr>';
 
 
@@ -134,7 +135,7 @@ foreach ($paginas as $key => $pagina) {
                   <table class="table table-bordered table-dark table-bordered table-hover table-striped">
                      <thead>
                         <tr>
-                           <td colspan="4">
+                           <td colspan="5">
                               <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-default"> <i class="fas fa-plus"></i> &nbsp; Nova</button>
                            </td>
                         </tr>
@@ -142,6 +143,7 @@ foreach ($paginas as $key => $pagina) {
                            <th style="text-align: left; width:80px"> CÓDIGO </th>
                            <th> NOME </th>
                            <th> EMAIL </th>
+                           <th> CARGO</th>
                            <th style="text-align: center; width:200px"> AÇÃO </th>
                         </tr>
                      </thead>
@@ -199,7 +201,7 @@ foreach ($paginas as $key => $pagina) {
                            <?php
 
                            foreach ($cargos as $item) {
-                              echo '<option value="' . $item->id . '">' . $item->descricao . '</option>';
+                              echo '<option value="' . $item->id . '">' . $item->nome . '</option>';
                            }
                            ?>
 
