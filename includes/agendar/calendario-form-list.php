@@ -21,7 +21,6 @@
                   <?php
 
                   use App\Entidy\Marcacao;
-                  use Sabberworm\CSS\Value\Value;
 
                   if (isset($_GET['id']) or is_numeric($_GET['id'])) {
 
@@ -34,6 +33,7 @@
                   $data_marcada = "";
                   $hora_marcada = "";
                   $cor = "";
+                  $idhora = 0;
 
 
                   require_once("funcao.php");
@@ -145,7 +145,7 @@
 
                            $id = $item->id;
 
-                           $data1 = $id . ' ' . $data . ' ' . $id_aluno;
+                           $data1 = $id .  '  ' . $data . '  ' . $id_aluno;
 
                            $contador += 1;
 
@@ -155,26 +155,38 @@
 
                            foreach ($marcacoes as $value) {
 
+                              $idhora = $value->id;
+
                               $data_marcada = $value->data;
                               $hora_marcada = $value->horario_id;
 
                               if ($data == $data_marcada) {
+                                 $horarios = Marcacao :: getHoraID('*','marcacao',$id,null,null);
 
-                                 if ($id == $hora_marcada) {
+                                 if($horarios != false){
 
-                                    $marcado = "text-decoration:line-through;color:#ff0000;font-size:17px";
-                                    $checked = "checked";
-
-                                 } else {
-
-                                    $marcado = "color:#000";
-                                    $checked = "";
-
+                                    $hora_marcada = $horarios->horario_id;
+                                    
                                  }
+      
+                                 if($id == $hora_marcada){
+
+                                     $data1 = $id. '  '  . $data. '  ' .$id_aluno.  '  '.$idhora;
+
+                                     $marcado = "text-decoration:line-through;color:#ff0000;font-size:17px";
+                                     $checked = "checked";
+
+                                 }else{
+
+                                     $data1 = $id.' '. $data.' '.$id_aluno.' '.$idhora;
+
+                                     $marcado = "color:#000";
+                                     $checked = "";
+                                 }
+
+                               
                               }
                            }
-
-                           $data1 = $id . ' ' . $data . ' ' . $id_aluno;
 
                            $contador += 1;
 

@@ -81,7 +81,7 @@ class Marcacao{
     public static function getHoraID($fields, $table, $where, $order, $limit)
     {
         return (new Database('marcacao'))->select($fields, $table, 'horario_id = ' . $where, $order, $limit)
-        ->fetchAll(PDO::FETCH_CLASS, self::class);
+        ->fetchObject(self::class);
     }
 
 
