@@ -42,7 +42,7 @@ foreach ($listar as $item) {
                       
                      
 
-                       <a href="calendario-list.php?id=' . $item->id_aluno . '">
+                       <a href="calendario-list.php?id='.$item->id_aluno.'">
                        <button type="button" class="btn btn-danger"> <i class="fas fa-calendar"></i>&nbsp;&nbsp; AGENDAR</button>
                        </a>
 
