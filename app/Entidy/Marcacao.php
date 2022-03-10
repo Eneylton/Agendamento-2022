@@ -13,6 +13,7 @@ class Marcacao{
     public $status;
     public $alunos_id;
     public $horario_id;
+    public $contador_id;
     
     public function cadastar(){
 
@@ -26,6 +27,7 @@ class Marcacao{
             'data'                       => $this->data,
             'status'                     => $this->status,
             'alunos_id'                  => $this->alunos_id,
+            'contador_id'                => $this->contador_id,
             'horario_id'                 => $this->horario_id
           
         ]);
@@ -37,11 +39,11 @@ class Marcacao{
     public function atualizar(){
         return (new Database ('marcacao'))->update('id = ' .$this-> id, [
     
-           
             'id'                         => $this->id,
             'data'                       => $this->data,
             'status'                     => $this->status,
             'alunos_id'                  => $this->alunos_id,
+            'contador_id'                => $this->contador_id,
             'horario_id'                 => $this->horario_id
         ]);
       
@@ -78,9 +80,14 @@ class Marcacao{
     }
 
 
-    public static function getHoraID($fields, $table, $where, $order, $limit)
+    public static function getContadorID($fields, $table, $where, $order, $limit)
     {
-        return (new Database('marcacao'))->select($fields, $table, 'horario_id = ' . $where, $order, $limit)
+        return (new Database('marcacao'))->select($fields, $table, 'contador_id = ' . $where, $order, $limit)
+        ->fetchObject(self::class);
+    }
+    public static function getDataID($fields, $table, $where, $order, $limit)
+    {
+        return (new Database('marcacao'))->select($fields, $table, 'data = ' . "'".$where."'", $order, $limit)
         ->fetchObject(self::class);
     }
 

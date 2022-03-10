@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Mar-2022 às 01:52
+-- Tempo de geração: 10-Mar-2022 às 01:17
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.14
 
@@ -86,9 +86,9 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id`, `nome`, `status`, `categoria_id`) VALUES
-(1, 'Eneylton Barros', 0, 1),
-(2, 'Carla Barros ', 0, 2),
-(3, 'Almir Jansen', 1, 3),
+(1, 'Eneylton Barros', 1, 1),
+(2, 'Carla Barros ', 1, 2),
+(3, 'Almir Costa', 0, 3),
 (4, 'Elias Barros', 0, 3),
 (5, 'Kassia Andrade', 1, 1),
 (6, 'Jose de Arimateia', 1, 3);
@@ -199,8 +199,7 @@ CREATE TABLE `instrutor` (
 --
 
 INSERT INTO `instrutor` (`id`, `nome`, `email`, `senha`, `categoria_id`, `veiculo_id`, `acessos_id`, `cargos_id`, `usuarios_id`) VALUES
-(9, 'karina Barros', 'karina@gmail.com', '$2y$10$WjzX.KYavRDBjRK8lYSjCOQOQ7toSDqb2i48y2fp8u0QZnbJSzgt2', 6, 1, 7, 12, 18),
-(10, 'Maria', 'maria@gmail.com', '$2y$10$4a2kQQMaZH1.17ETmiiU4.rWFa0Wy.BODFEotAyXYygj/XQenBRL2', 8, 3, 7, 12, 19);
+(12, 'karina Barros', 'karina@eneylton.com', '123', 10, 6, 7, 12, 21);
 
 -- --------------------------------------------------------
 
@@ -219,9 +218,10 @@ CREATE TABLE `instrutor_alunos` (
 --
 
 INSERT INTO `instrutor_alunos` (`id`, `instrutor_id`, `alunos_id`) VALUES
-(25, 10, 3),
-(26, 10, 5),
-(27, 10, 6);
+(30, 12, 1),
+(31, 12, 2),
+(32, 12, 5),
+(33, 12, 6);
 
 -- --------------------------------------------------------
 
@@ -234,18 +234,29 @@ CREATE TABLE `marcacao` (
   `data` date DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `alunos_id` int(11) NOT NULL,
-  `horario_id` int(11) NOT NULL
+  `horario_id` int(11) NOT NULL,
+  `contador_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `marcacao`
 --
 
-INSERT INTO `marcacao` (`id`, `data`, `status`, `alunos_id`, `horario_id`) VALUES
-(21, '2022-02-27', 1, 3, 1),
-(23, '2022-02-28', 1, 3, 2),
-(25, '2022-03-01', 1, 3, 3),
-(26, '2022-03-02', 1, 3, 6);
+INSERT INTO `marcacao` (`id`, `data`, `status`, `alunos_id`, `horario_id`, `contador_id`) VALUES
+(160, '2022-02-27', 1, 1, 1, 1),
+(161, '2022-02-27', 1, 1, 2, 2),
+(162, '2022-02-28', 1, 1, 1, 12),
+(167, '2022-03-01', 1, 2, 1, 23),
+(168, '2022-03-01', 1, 2, 2, 24),
+(169, '2022-03-01', 1, 2, 3, 25),
+(170, '2022-03-03', 1, 2, 4, 48),
+(171, '2022-03-04', 1, 2, 2, 57),
+(172, '2022-03-04', 1, 2, 5, 60),
+(173, '2022-03-04', 1, 2, 6, 61),
+(174, '2022-03-05', 1, 2, 8, 74),
+(175, '2022-03-05', 1, 2, 9, 75),
+(176, '2022-03-05', 1, 2, 10, 76),
+(177, '2022-03-05', 1, 2, 11, 77);
 
 -- --------------------------------------------------------
 
@@ -270,8 +281,7 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `acessos_id`, `cargos_id
 (4, 'admin', 'admin@eneylton.com', '$2y$10$JZR7X2ZpplGhF4dtchAhJedF/Y0/4ynAOd8VBlR4ehJfLOKHX4mLG', 1, 1),
 (7, 'ene', 'eneylton@hotmail.com', '$2y$10$JZR7X2ZpplGhF4dtchAhJedF/Y0/4ynAOd8VBlR4ehJfLOKHX4mLG', 2, 1),
 (13, 'enexs', 'enex@gmail.com.br', '202cb962ac59075b964b07152d234b70', 3, 1),
-(18, 'karina Barros', 'karina@gmail.com', '$2y$10$B36yl.Q3oYO5TAualTzTC.1F6mcYk4mhzoBx2OBJ4eE3/sFz3zEpC', 7, 12),
-(19, 'Carol', 'carol@gmail.com', '$2y$10$gOrQfE0cvkmVN1QUXUUElOqfsNsZLRDLT3r6ipfdgRHZfVdCu5Wu6', 7, 12);
+(21, 'karina Barros', 'karina@eneylton.com', '$2y$10$Zen/TOmhjyjnlASBCmxqMuTHkNDDna0AajF3bVdZQJSgNXLQrd1xu', 7, 12);
 
 -- --------------------------------------------------------
 
@@ -425,25 +435,25 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de tabela `instrutor`
 --
 ALTER TABLE `instrutor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `instrutor_alunos`
 --
 ALTER TABLE `instrutor_alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `marcacao`
 --
 ALTER TABLE `marcacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `veiculo`

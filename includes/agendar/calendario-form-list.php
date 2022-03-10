@@ -96,16 +96,16 @@
 
 
 
-<a class="btn btn-secondary" href="?id=' . $id_aluno . '&month=' . anteriorMes($monthTime) . '"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; &nbsp; ANTERIOR</a>
+<a class="btn btn-secondary" href="calendario-list.php?id=' . $id_aluno . '&month=' . anteriorMes($monthTime) . '"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; &nbsp; ANTERIOR</a>
 
 <h1>' . $mes . '</h1>
 
-<a class="btn btn-secondary" href="?id=' . $id_aluno . '&month=' . proximoMes($monthTime) . '"> PROXIMO &nbsp; &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+<a class="btn btn-secondary" href="calendario-list.php?id=' . $id_aluno . '&month=' . proximoMes($monthTime) . '"> PROXIMO &nbsp; &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 
 </header>';
 
                   $startDate = strtotime('last sunday', $monthTime);
-
+                  $tabela .= '<input type="hidden" name="id_aluno" value="' . $id_aluno . '">';
                   $tabela .= '<table class="table">
                   <thead>
                   <tr style="text-align: center;">
@@ -143,63 +143,40 @@
 
                         foreach ($listar as $item) {
 
-                          
-                           $tabela.='<input type="hidden" name="id_aluno" value="'.$id_aluno.'">';
-                           
-
-                           $id = $item->id;
-
-                           $data1 = $id .  '  ' . $data . '  ' . $id_aluno;
+                           $marcado = "color:#000";
+                           $checked = "";
+                           $idhora =  0;
 
                            $contador += 1;
+                           $id = $item->id;
+                           $data_agendada = $data;
 
-                           $marcacoes = Marcacao::getList('m.id as id,m.data as data ,m.status as status, h.id as horario_id,m.alunos_id as alunos_id', 'horario AS h
-                           INNER JOIN
-                           marcacao AS m ON (m.horario_id = h.id)', null, 'm.data ASC');
+                           $buscarHora = Marcacao::getContadorID('*', 'marcacao', $contador, null, null);
+                          
+                           if ($buscarHora != false) {
 
-                           foreach ($marcacoes as $value) {
+                              $data_marcada = $buscarHora->data;
+                              $hora_marcada = $buscarHora->horario_id;
+   
 
-                              $idhora = $value->id;
+                              if ($data_marcada == $data_agendada) {
 
-                              $data_marcada = $value->data;
-                              $hora_marcada = $value->horario_id;
+                                 if ($id == $hora_marcada) {
 
-                              
-
-                              if ($data == $data_marcada) {
-                                 $horarios = Marcacao :: getHoraID('*','marcacao',$id,null,null);
-
-                                 if($horarios != false){
-
-                                    $hora_marcada = $horarios->horario_id;
-                                    
+                                    $idContator =   $contador;
+                                    $marcado = "text-decoration:line-through;color:#ff0000;font-size:17px";
+                                    $checked = "checked";
                                  }
-      
-                                 if($id == $hora_marcada){
-                                       
-                                     $marcado = "text-decoration:line-through;color:#ff0000;font-size:17px";
-                                     $checked = "checked";
-
-                                 }else{
-
-                                     $marcado = "color:#000";
-                                     $checked = "";
-                                 }
-
-                               
                               }
                            }
 
-                           $contador += 1;
-                              
                            $tabela .= '
                            <div class="icheck-red ">
 
-                           <input type="checkbox" value="' .$data. ' ' .$id .'" name="id[]" id="[' . $contador . ']" ' . $checked . ' >
+                           <input type="checkbox" value="' . $data . '  ' . $id . '    ' . $contador . '" name="id[]" id="[' . $contador . ']" ' . $checked . ' >
                            <label style="' . $marcado . '" for="[' . $contador . ']">   ' . date('H:i ', strtotime($item->hora)) . '</label>
-                           </div>   
-                          
-                           ';
+                           
+                           </div>';
                         }
 
                         $tabela .= '</td>';
